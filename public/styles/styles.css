@@ -1,0 +1,71 @@
+
+
+body {
+    background-color: #eee8d5;
+    color: #586e75;
+}
+
+div.mountpointList {
+    display: block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    background-color: #fdf6e3;
+    margin-right: 25px;
+}
+
+div.mountpoint {
+    margin-bottom: 10px;
+}
+
+h2.mountpointHeader {
+    color: #b58900;
+    padding: 5px 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+}
+
+h4.mountpointDescription {
+    padding: 5px 0px;
+    margin: 0px;
+}
+
+div.mountpointAudio {
+    display: block;
+}
+
+div.mountpointM3u {
+    display: block;
+}
+
+div.mountpointInfo {
+    display: table;
+}
+
+div.mountpointInfoRow {
+    display: table-row;
+}
+
+div.mountpointInfoCell {
+    display: table-cell;
+    padding-right: 8px;
+}
+
+div.mountpointInfoCellAccented {
+    display: table-cell;
+    color: #b58900;
+}
+
+div.mountpointInfoCellAccented2 {
+    display: table-cell;
+    color: #b58900;
+    font-weight: bold;
+}
+
+div.mountpointSkip {
+    display: table-cell;
+}
+
+pre {
+    margin: 0;
+}

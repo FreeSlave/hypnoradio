@@ -1,0 +1,13 @@
+{
+	"name": "hypnoradio",
+	"authors": [
+		"Roman Chistokhodov"
+	],
+	"dependencies": {
+		"vibe-d:http": "~>0.8.3"
+	},
+	"description": "A simple vibe.d server application.",
+	"copyright": "Copyright © 2017, Roman Chistokhodov",
+	"license": "proprietary",
+	"versions" : ["VibeNoSSL"]
+}

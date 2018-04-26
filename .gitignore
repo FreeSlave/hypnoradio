@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+hypnoradio.so
+hypnoradio.dylib
+hypnoradio.dll
+hypnoradio.a
+hypnoradio.lib
+hypnoradio-test-*
+hypnoradio
+*.exe
+*.o
+*.obj
+*.lst
