@@ -1,6 +1,7 @@
 # Hypnoradio
 
-Web server that provides simple interface to icecast radio server. Made with [vibe.d](https://vibed.org/)
+Http server that provides simple web interface to icecast radio server, that's meant to be shown to listeners, not icecast administrators.
+Made with [vibe.d](https://vibed.org/)
 
 Features:
 

@@ -6,8 +6,8 @@
 	"dependencies": {
 		"vibe-d:http": "~>0.8.3"
 	},
-	"description": "A simple vibe.d server application.",
+	"description": "Http server that provides simple web interface to icecast radio server.",
 	"copyright": "Copyright © 2017, Roman Chistokhodov",
-	"license": "proprietary",
+	"license": "BSL-1.0",
 	"versions" : ["VibeNoSSL"]
 }
