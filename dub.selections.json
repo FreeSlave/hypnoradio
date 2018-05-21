@@ -8,6 +8,7 @@
 		"libasync": "0.8.3",
 		"libevent": "2.0.2+2.0.16",
 		"memutils": "0.4.10",
+		"mofile": "0.2.0",
 		"openssl": "1.1.6+1.0.1g",
 		"stdx-allocator": "2.77.1",
 		"taggedalgebraic": "0.10.11",

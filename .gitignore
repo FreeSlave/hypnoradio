@@ -13,3 +13,5 @@ hypnoradio
 *.o
 *.obj
 *.lst
+*.mo
+*.po~

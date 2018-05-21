@@ -1,0 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-21 20:17+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views/radio.dt:16
+msgid "Station"
+msgstr ""
+
+#: views/radio.dt:22
+msgid "Listen in mediaplayer"
+msgstr ""
+
+#: views/radio.dt:25
+msgid "Listeners"
+msgstr ""
+
+#: views/radio.dt:29
+msgid "Previous track"
+msgstr ""
+
+#: views/radio.dt:34
+msgid "Playing now"
+msgstr ""
+
+#: views/radio.dt:39 views/radio.dt:38
+msgid "Vote for skipping this track"
+msgstr ""
+
+#: views/radio.dt:29
+msgid "Previous track:"
+msgstr ""
+
+#: views/radio.dt:33
+msgid "Playing now:"
+msgstr ""

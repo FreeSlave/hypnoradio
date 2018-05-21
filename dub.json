@@ -4,7 +4,8 @@
 		"Roman Chistokhodov"
 	],
 	"dependencies": {
-		"vibe-d:http": "~>0.8.3"
+		"vibe-d:http": "~>0.8.3",
+        "mofile" : "~>0.2.0"
 	},
 	"description": "Http server that provides simple web interface to icecast radio server.",
 	"copyright": "Copyright © 2017, Roman Chistokhodov",

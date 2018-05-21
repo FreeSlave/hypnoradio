@@ -13,29 +13,29 @@ html
         div.mountpointList
             - foreach(mountPoint; mountPoints)
                 div.mountpoint(id="#{mountPoint.server_name}")
-                    h2.mountpointHeader Станция #{mountPoint.server_name}
+                    h2.mountpointHeader #{gettext("Station")} #{mountPoint.server_name}
                     h4.mountpointDescription(id="#{mountPoint.server_name}.description") #{mountPoint.description}
                     div.mountpointAudio
                         audio(controls="controls", preload="none")
                             source(src="#{icecastServerAddress}#{mountPoint.server_name}", type="application/ogg")
                     div.mountpointM3u
-                        a(href="#{icecastServerAddress}#{mountPoint.server_name}.m3u") Слушать в плеере
+                        a(href="#{icecastServerAddress}#{mountPoint.server_name}.m3u") #{gettext("Listen in mediaplayer")}
                     div.mountpointInfo
                         div.mountpointInfoRow
-                            div.mountpointInfoCell Слушатели:
+                            div.mountpointInfoCell #{gettext("Listeners")}:
                             div.mountpointInfoCellAccented
                                 pre(id="#{mountPoint.server_name}.listeners") #{mountPoint.listeners}
                         div.mountpointInfoRow
-                            div.mountpointInfoCell Предыдущий трек:
+                            div.mountpointInfoCell #{gettext("Previous track:")}
                             div.mountpointInfoCellAccented
                                 pre(id="#{mountPoint.server_name}.previous_title") #{mountPoint.previous_title}
                         div.mountpointInfoRow
-                            div.mountpointInfoCell Сейчас играет:
+                            div.mountpointInfoCell #{gettext("Playing now:")}
                             div.mountpointInfoCellAccented2
                                 pre(id="#{mountPoint.server_name}.title") #{mountPoint.title}
                         div.mountpointInfoRow
                             div.mountpointInfoCell
-                                button(onclick="voteForSkip('#{mountPoint.server_name}')") Голос за смену трека
+                                button(onclick="voteForSkip('#{mountPoint.server_name}')") #{gettext("Vote for skipping this track")}
                             div.mountpointInfoCell
                                 pre(id="#{mountPoint.server_name}.vote_status")
 

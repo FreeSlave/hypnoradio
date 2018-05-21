@@ -15,6 +15,7 @@ import std.string : replace, representation;
 import std.range : front, empty;
 import std.datetime.systime;
 import core.time;
+import mofile;
 
 struct MountPoint
 {
@@ -57,11 +58,13 @@ void main(string[] args)
     string pageTitle = "Some cool music";
     string liquidsoapIp = "127.0.0.1";
     ushort liquidsoapTelnetPort = 1234;
+    string mofilePath;
 
     readOption("pageTitle", &pageTitle, "Page title");
     readOption("icecastAddress", &icecastServerAddress, "Icecast server address");
     readOption("liquidsoapIp", &liquidsoapIp, "ip address where liquidsoap is running (without port)");
     readOption("liquidsoapTelnetPort", &liquidsoapTelnetPort, "liquidsoap port to talk via telnet");
+    readOption("mofile", &mofilePath, "Path to .mo translation file");
     if (icecastServerAddress.length && icecastServerAddress[$-1] != '/') {
         icecastServerAddress ~= '/';
     }
@@ -70,6 +73,9 @@ void main(string[] args)
         return;
     }
 
+    MoFile moFile;
+    if (mofilePath.length)
+        moFile = MoFile(mofilePath);
 
     string icecastJsonEndpoint = icecastServerAddress ~ "json.xsl";
     MountPoint[] mountPoints;
@@ -95,9 +101,13 @@ void main(string[] args)
         }
     }
 
+    auto gettext = delegate string(string msg) {
+        return moFile.gettext(msg);
+    };
+
     void index(HTTPServerRequest req, HTTPServerResponse res)
     {
-        res.render!("radio.dt", mountPoints, pageTitle, icecastServerAddress);
+        res.render!("radio.dt", mountPoints, pageTitle, icecastServerAddress, gettext);
     }
 
     void info(HTTPServerRequest req, HTTPServerResponse res)
