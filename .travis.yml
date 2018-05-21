@@ -1,0 +1,10 @@
+language: d
+matrix:
+    allow_failures:
+        - d: ldc
+    include:
+        - d: dmd
+        - d: ldc
+
+script:
+    - dub build --compiler=${DC}
