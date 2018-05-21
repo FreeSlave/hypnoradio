@@ -183,54 +183,54 @@ void main(string[] args)
     runTask({
         while(true)
         {
-			HTTPClientResponse res;
-			try {
-				res = requestHTTP(icecastJsonEndpoint, (scope HTTPClientRequest req) {});
-			} catch(Exception e) {
-				logError("Error during http request to icecast endpoint: %s", e);
-				sleep(dur!"msecs"(5000));
-				continue;
-			}
-			try {
-				auto data = res.bodyReader.readAllUTF8();
-				auto jsonArr = data.parseJsonString();
-				mountPoints.reserve(jsonArr.length);
-				bool shouldNotify;
-				foreach(json; jsonArr)
-				{
-					string server_name = json["server_name"].to!string;
-					auto findResult = mountPoints.find!("a.server_name == b")(server_name);
-					MountPoint mp;
-					mp.server_name = server_name;
-					mp.description = json["description"].to!string;
-					mp.listeners = json["listeners"].to!uint;
-					mp.title = json["title"].to!string;
-					mp.genre = json["genre"].to!string;
-					if (!findResult.empty) {
-						auto foundMountPoint = &findResult.front;
-						if (foundMountPoint.title != mp.title || foundMountPoint.listeners != mp.listeners) {
-							if (foundMountPoint.title != mp.title) {
-								mp.previous_title = foundMountPoint.title;
-								auto vote = mp.server_name in votes;
-								if (vote)
-									vote.reset();
-							} else {
-								mp.previous_title = foundMountPoint.previous_title;
-							}
-							*foundMountPoint = mp;
-							shouldNotify = true;
-						}
-					} else  {
-						mountPoints ~= mp;
-					}
-				}
-				if (shouldNotify) {
-					condition.notifyAll();
-				}
-			} catch(Exception e) {
-				logError("Error during processing response from icecast: %s", e);
-			}
-			sleep(dur!"msecs"(5000));
+            HTTPClientResponse res;
+            try {
+                res = requestHTTP(icecastJsonEndpoint, (scope HTTPClientRequest req) {});
+            } catch(Exception e) {
+                logError("Error during http request to icecast endpoint: %s", e);
+                sleep(dur!"msecs"(5000));
+                continue;
+            }
+            try {
+                auto data = res.bodyReader.readAllUTF8();
+                auto jsonArr = data.parseJsonString();
+                mountPoints.reserve(jsonArr.length);
+                bool shouldNotify;
+                foreach(json; jsonArr)
+                {
+                    string server_name = json["server_name"].to!string;
+                    auto findResult = mountPoints.find!("a.server_name == b")(server_name);
+                    MountPoint mp;
+                    mp.server_name = server_name;
+                    mp.description = json["description"].to!string;
+                    mp.listeners = json["listeners"].to!uint;
+                    mp.title = json["title"].to!string;
+                    mp.genre = json["genre"].to!string;
+                    if (!findResult.empty) {
+                        auto foundMountPoint = &findResult.front;
+                        if (foundMountPoint.title != mp.title || foundMountPoint.listeners != mp.listeners) {
+                            if (foundMountPoint.title != mp.title) {
+                                mp.previous_title = foundMountPoint.title;
+                                auto vote = mp.server_name in votes;
+                                if (vote)
+                                    vote.reset();
+                            } else {
+                                mp.previous_title = foundMountPoint.previous_title;
+                            }
+                            *foundMountPoint = mp;
+                            shouldNotify = true;
+                        }
+                    } else  {
+                        mountPoints ~= mp;
+                    }
+                }
+                if (shouldNotify) {
+                    condition.notifyAll();
+                }
+            } catch(Exception e) {
+                logError("Error during processing response from icecast: %s", e);
+            }
+            sleep(dur!"msecs"(5000));
         }
     });
 
