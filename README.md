@@ -14,6 +14,8 @@ Features:
 
     dub run -- --pageTitle="My cool radio" --icecastAddress=http://127.0.0.1:8000/ # put actual icecast address here
 
+By default it runs on 8080 port. Use --port to change the port. Use --help to see other options.
+
 If you want to use *skip* feature with liquidsoap don't forget to include the following line in your liquidsoap script:
 
     set("server.telnet", true)

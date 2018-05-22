@@ -59,14 +59,20 @@ void main(string[] args)
     string liquidsoapIp = "127.0.0.1";
     ushort liquidsoapTelnetPort = 1234;
     string mofilePath;
+    ushort port = 8080;
 
-    readOption("pageTitle", &pageTitle, "Page title");
     readOption("icecastAddress", &icecastServerAddress, "Icecast server address");
     readOption("liquidsoapIp", &liquidsoapIp, "ip address where liquidsoap is running (without port)");
     readOption("liquidsoapTelnetPort", &liquidsoapTelnetPort, "liquidsoap port to talk via telnet");
     readOption("mofile", &mofilePath, "Path to .mo translation file");
+    readOption("pageTitle", &pageTitle, "Page title");
+    readOption("port", &port, "Run http server on this port");
     if (icecastServerAddress.length && icecastServerAddress[$-1] != '/') {
         icecastServerAddress ~= '/';
+    }
+    auto icecastServerUrl = URL(icecastServerAddress);
+    if (icecastServerUrl.schema != "http" && icecastServerUrl.schema != "https") {
+        icecastServerAddress = "http://" ~ icecastServerAddress;
     }
 
     if (!finalizeCommandLineOptions()) {
@@ -82,7 +88,7 @@ void main(string[] args)
     VoteForSkip[string] votes;
 
     auto settings = new HTTPServerSettings;
-    settings.port = 8080;
+    settings.port = port;
     settings.bindAddresses = ["0.0.0.0"];
 
     auto router = new URLRouter;
@@ -192,11 +198,12 @@ void main(string[] args)
                 continue;
             }
             try {
-                auto data = res.bodyReader.readAllUTF8();
-                auto jsonArr = data.parseJsonString();
-                mountPoints.reserve(jsonArr.length);
+                import std.exception : enforce;
+                enforce(res.statusCode == HTTPStatus.ok, httpStatusText(res.statusCode));
+                auto jsonDict = res.readJson();
+                mountPoints.reserve(jsonDict.length);
                 bool shouldNotify;
-                foreach(json; jsonArr)
+                foreach(json; jsonDict)
                 {
                     string server_name = json["server_name"].to!string;
                     auto findResult = mountPoints.find!("a.server_name == b")(server_name);
