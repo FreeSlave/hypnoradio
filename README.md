@@ -3,7 +3,7 @@
 Http server that provides simple web interface to icecast radio server, that's meant to be shown to listeners, not icecast administrators.
 Made with [vibe.d](https://vibed.org/)
 
-[![Build Status](https://travis-ci.org/FreeSlave/hypnoradio.svg?branch=master)](https://travis-ci.org/FreeSlave/hypnoradio?branch=master)
+[![Build Status](https://github.com/FreeSlave/hypnoradio/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/FreeSlave/hypnoradio/actions/workflows/ci.yml)
 
 Features:
 
